@@ -10,7 +10,7 @@ set -eo pipefail
     exit 1
   fi
 
-  webp_quality=80
+  webp_quality=75
 
   export webp_quality
   export webp_cli
