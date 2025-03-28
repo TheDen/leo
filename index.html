@@ -480,7 +480,9 @@
 
       function startShootingStars() {
         setInterval(() => {
-          createShootingStar();
+          if (Math.random() < 0.8) {
+            createShootingStar();
+          }
         }, 5000);
       }
 
