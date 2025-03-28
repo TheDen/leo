@@ -239,6 +239,36 @@
         max-width: 60%;
         position: relative;
       }
+
+      .shooting-star {
+        position: fixed;
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(
+          to left,
+          rgba(255, 255, 255, 0.8),
+          transparent
+        );
+        filter: drop-shadow(0 0 6px white);
+        opacity: 0;
+        z-index: -1;
+        pointer-events: none;
+        transform: rotate(45deg); /* Rotate entire element */
+      }
+
+      @keyframes shoot {
+        0% {
+          opacity: 0;
+          transform: translate(0, 0) rotate(45deg);
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(300px, 300px) rotate(45deg);
+        }
+      }
     </style>
   </head>
 
@@ -427,6 +457,34 @@
         star.style.height = size;
         starContainer.appendChild(star);
       }
+    </script>
+    <script>
+      function createShootingStar() {
+        const star = document.createElement("div");
+        star.classList.add("shooting-star");
+
+        const startX = Math.random() * window.innerWidth * 0.8;
+        const startY = Math.random() * window.innerHeight * 0.4;
+        star.style.top = `${startY}px`;
+        star.style.left = `${startX}px`;
+
+        const duration = Math.random() * 1.5 + 0.5; // Between 0.5s and 2s
+        star.style.animation = `shoot ${duration}s ease-out forwards`;
+
+        document.body.appendChild(star);
+
+        setTimeout(() => {
+          star.remove();
+        }, duration * 1000);
+      }
+
+      function startShootingStars() {
+        setInterval(() => {
+          createShootingStar();
+        }, 5000);
+      }
+
+      startShootingStars();
     </script>
   </body>
 </html>
