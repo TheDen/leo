@@ -92,7 +92,7 @@
       }
 
       h1 {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 4vw, 3rem);
       }
 
       h2 {
@@ -108,14 +108,14 @@
       }
 
       .poem-container {
-        font-family: "EB Garamond", serif;
+        font-family: serif;
         background: rgba(255, 255, 255, 0.05);
         padding: 40px;
         border-radius: 16px;
         max-width: 600px;
         text-align: center;
         line-height: 1.6;
-        font-size: 1.2em;
+        font-size: clamp(1rem, 2vw, 1.2em);
         color: #ffffff;
         backdrop-filter: blur(8px);
       }
@@ -356,7 +356,7 @@
     <section class="poem-section">
       <div class="poem-container">
         <div class="poem-title">One Last Day</div>
-        <div class="poem">
+        <div class="poem" aria-label="Poem: One Last Day">
           <p>
             Just one more day,<br />
             That’s all I ask.<br />
