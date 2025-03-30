@@ -2,7 +2,7 @@
 
 (
   cd images
-  echo '<div id="lightgallery">'
+  echo '<div id="lightgallery" aria-label="Photo Gallery">'
   for f in $(ls leo-*.webp | sort); do
     # skip if the file is called leo-main.webp
     if [ "$f" == "leo-main.webp" ]; then
