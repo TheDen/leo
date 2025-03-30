@@ -168,6 +168,13 @@
         gap: 10px;
         max-width: 1000px;
         margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      @media (max-width: 600px) {
+        #lightgallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       #lightgallery a img {
