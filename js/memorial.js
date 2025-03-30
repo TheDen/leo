@@ -1,28 +1,32 @@
+// --- Utilities ---
 // Polyfill for requestIdleCallback
 const safeIdle =
   window.requestIdleCallback ||
-  function (cb) {
-    return setTimeout(() => cb({ timeRemaining: () => 50 }), 1);
-  };
+  ((cb) => setTimeout(() => cb({ timeRemaining: () => 50 }), 1));
 
-// Preload meow audio
+// --- DOM Elements ---
 const meowAudio = document.getElementById("meow-audio");
+const leoImage = document.getElementById("leoImage");
+const starContainer = document.querySelector(".stars");
+const candleFlame = document.getElementById("candle-flame");
+const lightGalleryElement = document.getElementById("lightgallery");
+
+// --- Audio Setup ---
 meowAudio.load();
 meowAudio.addEventListener("canplaythrough", () => {
   console.log("Meow audio is ready.");
 });
 
-// Meow on image click
-const leoImage = document.getElementById("leoImage");
 leoImage.addEventListener("click", () => {
   meowAudio.currentTime = 0;
   meowAudio.play().catch((err) => console.error("Audio playback failed:", err));
 });
 
-// LightGallery initialization
+// --- LightGallery Init ---
 const isMobile = window.innerWidth < 600;
+
 safeIdle(() => {
-  lightGallery(document.getElementById("lightgallery"), {
+  lightGallery(lightGalleryElement, {
     plugins: [lgThumbnail, lgZoom],
     speed: 300,
     download: false,
@@ -31,7 +35,7 @@ safeIdle(() => {
     animateThumb: false,
     thumbnail: !isMobile,
     mobileSettings: {
-      controls: !isMobile,
+      controls: true,
       showCloseIcon: true,
       download: false,
       rotate: false,
@@ -40,14 +44,12 @@ safeIdle(() => {
   });
 });
 
-// Candle toggle
+// --- Candle Toggle ---
 function toggleCandle() {
-  const flame = document.getElementById("candle-flame");
-  flame.classList.toggle("hidden");
+  candleFlame.classList.toggle("hidden");
 }
 
-// Star field background
-const starContainer = document.querySelector(".stars");
+// --- Starfield Background ---
 safeIdle(() => {
   const frag = document.createDocumentFragment();
   for (let i = 0; i < 50; i++) {
@@ -55,26 +57,27 @@ safeIdle(() => {
     const top = Math.random() * 100;
     const left = Math.random() * 100;
     const size = Math.random() * 2 + 1;
+    const delay = Math.random() * 3;
     star.style.cssText = `
       top: ${top}%;
       left: ${left}%;
       width: ${size}px;
       height: ${size}px;
-      animation-delay: ${Math.random() * 3}s;
+      animation-delay: ${delay}s;
     `;
     frag.appendChild(star);
   }
   starContainer.appendChild(frag);
 });
 
-// Shooting star pool reuse
+// --- Shooting Stars ---
 const shootingStarPool = Array.from({ length: 10 }, () => {
   const el = document.createElement("div");
-  el.className = "shooting-star";
-  el.classList.add("hidden");
+  el.className = "shooting-star hidden";
   document.body.appendChild(el);
   return el;
 });
+
 let poolIndex = 0;
 
 function reuseShootingStar() {
@@ -88,12 +91,9 @@ function reuseShootingStar() {
   star.style.top = `${startY}px`;
   star.style.left = `${startX}px`;
   star.style.animation = `shoot ${duration}s ease-out forwards`;
-
   star.classList.remove("hidden");
 
-  setTimeout(() => {
-    star.classList.add("hidden");
-  }, duration * 1000);
+  setTimeout(() => star.classList.add("hidden"), duration * 1000);
 }
 
 function startShootingStars() {
