@@ -543,13 +543,6 @@
           theden.sh
         </a>
       </footer>
-
-      <script>
-        function toggleCandle() {
-          const flame = document.getElementById("candle-flame");
-          flame.classList.toggle("hidden");
-        }
-      </script>
     </section>
 
     <div class="stars"></div>
@@ -557,78 +550,6 @@
     <script src="js/lightgallery.umd.min.js"></script>
     <script src="js/lg-thumbnail.umd.min.js"></script>
     <script src="js/lg-zoom.umd.min.js"></script>
-
-    <script>
-      const isMobile = window.innerWidth < 600;
-
-      lightGallery(document.getElementById("lightgallery"), {
-        plugins: [lgThumbnail, lgZoom],
-        speed: 300,
-        download: false,
-        thumbWidth: 80,
-        thumbHeight: 60,
-        animateThumb: false,
-        thumbnail: window.innerWidth > 600,
-        mobileSettings: {
-          controls: !isMobile, // Hides prev/next arrows
-          showCloseIcon: true,
-          download: false,
-          rotate: false,
-          thumbnail: false,
-        },
-      });
-
-      const leoImage = document.getElementById("leoImage");
-      const meowAudio = document.getElementById("meow-audio");
-
-      leoImage.addEventListener("click", () => {
-        meowAudio.currentTime = 0;
-        meowAudio
-          .play()
-          .catch((err) => console.error("Audio playback failed:", err));
-      });
-
-      const starContainer = document.querySelector(".stars");
-      for (let i = 0; i < 50; i++) {
-        const star = document.createElement("span");
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.animationDelay = `${Math.random() * 3}s`;
-        const size = `${Math.random() * 2 + 1}px`;
-        star.style.width = size;
-        star.style.height = size;
-        starContainer.appendChild(star);
-      }
-    </script>
-    <script>
-      function createShootingStar() {
-        const star = document.createElement("div");
-        star.classList.add("shooting-star");
-
-        const startX = Math.random() * window.innerWidth * 0.8;
-        const startY = Math.random() * window.innerHeight * 0.4;
-        star.style.top = `${startY}px`;
-        star.style.left = `${startX}px`;
-
-        const duration = Math.random() * 1.5 + 0.5; // Between 0.5s and 2s
-        star.style.animation = `shoot ${duration}s ease-out forwards`;
-
-        document.body.appendChild(star);
-
-        setTimeout(() => {
-          star.remove();
-        }, duration * 1000);
-      }
-
-      function startShootingStars() {
-        setInterval(() => {
-          if (Math.random() < 0.8) {
-            createShootingStar();
-          }
-        }, 5000);
-      }
-
-      startShootingStars();
-    </script>
+    <script src="js/memorial.js" defer></script>
   </body>
 </html>
