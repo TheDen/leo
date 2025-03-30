@@ -97,10 +97,17 @@ function reuseShootingStar() {
 }
 
 function startShootingStars() {
-  setInterval(() => {
-    if (Math.random() < 0.8) {
+  let lastTime = 0;
+  const interval = 5000; // 5 seconds
+
+  function loop(now) {
+    if (now - lastTime >= interval && Math.random() < 0.8) {
       reuseShootingStar();
+      lastTime = now;
     }
-  }, 5000);
+    requestAnimationFrame(loop);
+  }
+
+  requestAnimationFrame(loop);
 }
 startShootingStars();
