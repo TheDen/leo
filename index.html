@@ -431,14 +431,23 @@
     <script src="js/lg-zoom.umd.min.js"></script>
 
     <script>
+      const isMobile = window.innerWidth < 600;
+
       lightGallery(document.getElementById("lightgallery"), {
         plugins: [lgThumbnail, lgZoom],
         speed: 300,
         download: false,
-        thumbnail: true,
         thumbWidth: 80,
         thumbHeight: 60,
         animateThumb: false,
+        thumbnail: window.innerWidth > 600,
+        mobileSettings: {
+          controls: !isMobile, // Hides prev/next arrows
+          showCloseIcon: true,
+          download: false,
+          rotate: false,
+          thumbnail: false,
+        },
       });
 
       const leoImage = document.getElementById("leoImage");
