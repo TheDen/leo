@@ -1,3 +1,4 @@
+// Polyfill for requestIdleCallback
 const safeIdle =
   window.requestIdleCallback ||
   function (cb) {
