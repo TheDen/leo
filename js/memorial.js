@@ -1,3 +1,9 @@
+const safeIdle =
+  window.requestIdleCallback ||
+  function (cb) {
+    return setTimeout(() => cb({ timeRemaining: () => 50 }), 1);
+  };
+
 // Preload meow audio
 const meowAudio = document.getElementById("meow-audio");
 meowAudio.load();
@@ -14,7 +20,7 @@ leoImage.addEventListener("click", () => {
 
 // LightGallery initialization
 const isMobile = window.innerWidth < 600;
-requestIdleCallback(() => {
+safeIdle(() => {
   lightGallery(document.getElementById("lightgallery"), {
     plugins: [lgThumbnail, lgZoom],
     speed: 300,
@@ -41,7 +47,7 @@ function toggleCandle() {
 
 // Star field background
 const starContainer = document.querySelector(".stars");
-requestIdleCallback(() => {
+safeIdle(() => {
   const frag = document.createDocumentFragment();
   for (let i = 0; i < 50; i++) {
     const star = document.createElement("span");
