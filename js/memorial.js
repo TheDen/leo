@@ -35,7 +35,7 @@ safeIdle(() => {
     animateThumb: false,
     thumbnail: !isMobile,
     mobileSettings: {
-      controls: true,
+      controls: !isMobile,
       showCloseIcon: true,
       download: false,
       rotate: false,
