@@ -30,6 +30,20 @@
     <meta name="language" content="en" />
     <meta name="apple-mobile-web-app-title" content="Leo 🐾" />
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "In Loving Memory of Leo 🐾",
+        "description": "A loving memorial for Leo the cat...",
+        "image": "https://leo.theden.sh/images/leo-main.png",
+        "author": {
+          "@type": "Person",
+          "name": "leo.theden.sh"
+        }
+      }
+    </script>
+
     <!-- Open Graph for Facebook, LinkedIn, etc. -->
     <meta property="og:title" content="In Loving Memory of Leo 🐾" />
     <meta
@@ -379,7 +393,7 @@
     <h1 class="fancy-title">In Loving Memory of Leo 🐾</h1>
     <h2>Forever in our hearts — a gentle soul, now shining among the stars</h2>
 
-    <div id="lightgallery">
+    <div id="lightgallery" aria-label="Photo Gallery">
       <a href="images/leo-1.webp">
         <img src="images/leo-1.webp" loading="lazy" alt="Leo" />
       </a>
@@ -561,7 +575,7 @@
       </footer>
     </section>
 
-    <div class="stars"></div>
+    <div class="stars" aria-hidden="true"></div>
 
     <script src="js/lightgallery.umd.min.js"></script>
     <script src="js/lg-thumbnail.umd.min.js"></script>
